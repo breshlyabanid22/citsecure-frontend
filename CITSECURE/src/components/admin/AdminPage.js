@@ -33,7 +33,7 @@ class AdminPage extends Component {
   }
 
   fetchUsers = () => {
-    axios.get('http://localhost:8080/admin/getAllVisitors')
+    axios.get('https://bubbly-patience-production.up.railway.app/admin/getAllVisitors')
       .then(response => {
         this.setState({ users: response.data });
       })
@@ -112,7 +112,7 @@ class AdminPage extends Component {
   handleUpdateModalSave = async () => {
     const { selectedUserId, updatedUserData } = this.state;
     try {
-      const response = await axios.put(`http://localhost:8080/admin/updateVisitor/${selectedUserId}`, {
+      const response = await axios.put(`https://bubbly-patience-production.up.railway.app/admin/updateVisitor/${selectedUserId}`, {
         firstName: updatedUserData.firstName,
         lastName: updatedUserData.lastName,
       });
