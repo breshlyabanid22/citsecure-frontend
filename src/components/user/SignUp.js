@@ -153,7 +153,7 @@ class SignUp extends Component {
               
               <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 <Chip
-                  label="Access Campus Map after Time In"
+                  label="You can ccess Campus Map after Log In"
                   style={{
                     textAlign: 'center',
                     borderRadius: '100px',
