@@ -37,7 +37,7 @@ class SignUp extends Component {
 
   checkCardUsage = async (cardNo) => {
     try {
-      const response = await axios.get(`https://bubbly-patience-production.up.railway.app/admin/checkcard/${cardNo}`);
+      const response = await axios.get(`https://citsecure-backend.onrender.com/admin/checkcard/${cardNo}`);
       return response.data.isUsed;
     } catch (error) {
       console.error('Failed to check card usage:', error.message);
@@ -77,7 +77,7 @@ class SignUp extends Component {
         buildingToVisit,
       };
 
-      const response = await axios.post('https://bubbly-patience-production.up.railway.app/admin/addvisitor', formData, {
+      const response = await axios.post('https://citsecure-backend.onrender.com/admin/addvisitor', formData, {
         headers: {
           'Content-Type': 'application/json',
         },
