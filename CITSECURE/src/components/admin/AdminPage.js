@@ -33,7 +33,7 @@ class AdminPage extends Component {
   }
 
   fetchUsers = () => {
-    axios.get('https://bubbly-patience-production.up.railway.app/admin/getAllVisitors')
+    axios.get('https://citsecure-backend.onrender.com/admin/getAllVisitors')
       .then(response => {
         this.setState({ users: response.data });
       })
@@ -112,7 +112,7 @@ class AdminPage extends Component {
   handleUpdateModalSave = async () => {
     const { selectedUserId, updatedUserData } = this.state;
     try {
-      const response = await axios.put(`https://bubbly-patience-production.up.railway.app/admin/updateVisitor/${selectedUserId}`, {
+      const response = await axios.put(`https://citsecure-backend.onrender.com/admin/updateVisitor/${selectedUserId}`, {
         firstName: updatedUserData.firstName,
         lastName: updatedUserData.lastName,
       });
