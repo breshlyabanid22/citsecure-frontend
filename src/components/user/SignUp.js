@@ -79,7 +79,7 @@ class SignUp extends Component {
         buildingToVisit,
       };
  
-      const response = await axios.post('http://localhost:8080/admin/addvisitor', formData, {
+      const response = await axios.post('https://citsecure-backend.onrender.com/admin/addvisitor', formData, {
         headers: {
           'Content-Type': 'application/json',
         },

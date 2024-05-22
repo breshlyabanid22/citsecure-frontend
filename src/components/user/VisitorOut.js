@@ -67,7 +67,7 @@ class VisitorOut extends Component {
       }
  
       await axios.put(
-        `http://localhost:8080/admin/updateVisitorTimeOut/${cardNo}?timeOut=${hours}:${minutes} ${ampm}`,
+        `https://citsecure-backend.onrender.com/admin/updateVisitorTimeOut/${cardNo}?timeOut=${hours}:${minutes} ${ampm}`,
         {},
         {
           headers: {
