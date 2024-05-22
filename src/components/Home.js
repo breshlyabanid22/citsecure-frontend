@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 class Home extends Component {
   // Styles can be defined as class properties or inside the render method
   containerStyle = {
-    backgroundImage: `url('/images/Menu.png')`,
+    backgroundImage: `url('/images/MENU.png')`,
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
     backgroundPosition: 'center',
