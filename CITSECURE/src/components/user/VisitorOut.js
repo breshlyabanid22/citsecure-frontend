@@ -60,7 +60,7 @@ class VisitorOut extends Component {
       }
 
       await axios.put(
-        `https://bubbly-patience-production.up.railway.app/admin/updateVisitorTimeOut/${cardNo}?timeOut=${hours}:${minutes} ${ampm}`,
+        `https://citsecure-backend.onrender.com/admin/updateVisitorTimeOut/${cardNo}?timeOut=${hours}:${minutes} ${ampm}`,
         {},
         {
           headers: {
