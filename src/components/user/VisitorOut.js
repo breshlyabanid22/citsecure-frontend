@@ -5,7 +5,9 @@ import { Modal, Button as BootstrapButton } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-
+import { FaTimesCircle } from 'react-icons/fa';
+ 
+ 
 class VisitorOut extends Component {
   constructor(props) {
     super(props);
@@ -15,13 +17,14 @@ class VisitorOut extends Component {
       minutes: '',
       ampm: 'AM',
       showModal: false,
+      showErrorModal: false,
     };
   }
-
+ 
   componentDidMount() {
     this.setInitialTime();
   }
-
+ 
   setInitialTime = () => {
     const now = new Date();
     const hours = String(now.getHours() % 12 || 12); // Ensure hours is a string
@@ -29,38 +32,42 @@ class VisitorOut extends Component {
     const ampm = now.getHours() >= 12 ? 'PM' : 'AM';
     this.setState({ hours, minutes, ampm });
   };
-
+ 
   handleExit = () => {
     const navigate = useNavigate();
     navigate('/');
   };
-
+ 
   resetFormInputs = () => {
     this.setState({ cardNo: '' });
   };
-
+ 
   handleClose = () => {
     this.setState({ showModal: false });
     this.resetFormInputs();
   };
-
+ 
+  handleErrorClose = () => {
+    this.setState({ showErrorModal: false });
+  };
+ 
   handleLogin = async (e) => {
     e.preventDefault();
     const { cardNo, hours, minutes, ampm } = this.state;
-
+ 
     try {
       if (!cardNo) {
         alert('Please fill out all fields');
         return;
       }
-
+ 
       if (cardNo <= 0 || cardNo > 100) {
         alert('Invalid card number.');
         return;
       }
-
+ 
       await axios.put(
-        `https://citsecure-backend.onrender.com/admin/updateVisitorTimeOut/${cardNo}?timeOut=${hours}:${minutes} ${ampm}`,
+        `http://localhost:8080/admin/updateVisitorTimeOut/${cardNo}?timeOut=${hours}:${minutes} ${ampm}`,
         {},
         {
           headers: {
@@ -68,21 +75,21 @@ class VisitorOut extends Component {
           },
         }
       );
-
+ 
       this.setState({ showModal: true });
     } catch (error) {
       console.error('Time-out failed! Reason:', error.message);
-      alert('Card is not available');
+      this.setState({ showErrorModal: true });
     }
   };
-
+ 
   handleGoBack = () => {
     this.props.navigate('/'); // Navigate to the home page ("/")
   };
-
+ 
   render() {
-    const { cardNo, hours, minutes, ampm, showModal } = this.state;
-
+    const { cardNo, hours, minutes, ampm, showModal, showErrorModal } = this.state;
+ 
     const backgroundImageStyle = {
       backgroundImage: 'url("images/TIME OUT.png")',
       backgroundRepeat: 'no-repeat',
@@ -90,7 +97,7 @@ class VisitorOut extends Component {
       height: '100vh',
       overflow: 'hidden',
     };
-
+ 
     const formStyle = {
       border: '3px solid #A43F3F',
       borderRadius: '8px',
@@ -98,12 +105,12 @@ class VisitorOut extends Component {
       backgroundColor: '#FFF9EB',
       position: 'relative', // Add this for positioning the button
     };
-
+ 
     const inputStyle = {
       borderColor: '#A43F3F',
       borderRadius: '8px',
     };
-
+ 
     const loginButtonStyle = {
       backgroundColor: '#A43F3F',
       color: '#FFFFFF',
@@ -113,10 +120,10 @@ class VisitorOut extends Component {
       cursor: 'pointer',
       marginBottom: '10px',
     };
-
+ 
     // Convert hours and minutes to strings before using padStart
     const formattedTime = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')} ${ampm}`;
-
+ 
     return (
       <section className="background-radial-gradient overflow-hidden" style={backgroundImageStyle}>
         <div className="container px-4 py-5 px-md-5 text-center text-lg-start my-5 d-flex justify-content-end align-items-center">
@@ -159,7 +166,7 @@ class VisitorOut extends Component {
                       required
                     />
                   </div>
-
+ 
                   <div className="form-outline mb-4">
                     <label className="form-label" htmlFor="timeOut">
                       Time Out
@@ -174,7 +181,7 @@ class VisitorOut extends Component {
                       required
                     />
                   </div>
-
+ 
                   <button
                     type="submit"
                     className="btn btn-primary btn-block mb-4"
@@ -200,7 +207,7 @@ class VisitorOut extends Component {
             </div>
           </div>
         </div>
-
+ 
         <Modal show={showModal} onHide={this.handleClose} centered>
           <Modal.Header closeButton style={{ borderBottom: '2px solid maroon' }}>
             <Modal.Title>Notification</Modal.Title>
@@ -213,7 +220,7 @@ class VisitorOut extends Component {
               <p style={{ color: 'green', fontSize: '2rem' }}>✓</p>
             </div>
           </Modal.Body>
-
+ 
           <Modal.Footer
             style={{ borderTop: '2px solid maroon', display: 'flex', justifyContent: 'center' }}
           >
@@ -226,11 +233,38 @@ class VisitorOut extends Component {
             </BootstrapButton>
           </Modal.Footer>
         </Modal>
+ 
+        <Modal show={showErrorModal} onHide={this.handleErrorClose} centered>
+          <Modal.Header closeButton style={{ borderBottom: '2px solid maroon' }}>
+            <Modal.Title>Notification</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <div className="d-flex justify-content-center align-items-center">
+              <div className="d-flex align-items-center">
+                <p style={{ marginRight: '10px', marginBottom: '0' }}>
+                  Card is not available
+                </p>
+                <FaTimesCircle style={{ color: 'red', fontSize: '2rem', marginBottom: '0' }} />
+              </div>
+            </div>
+          </Modal.Body>
+          <Modal.Footer
+            style={{ borderTop: '2px solid maroon', display: 'flex', justifyContent: 'center' }}
+          >
+            <BootstrapButton
+              variant="primary"
+              onClick={this.handleErrorClose}
+              style={{ background: 'maroon', width: '150px' }}
+            >
+              OK
+            </BootstrapButton>
+          </Modal.Footer>
+        </Modal>
       </section>
     );
   }
 }
-
+ 
 export default function VisitorOutWithNavigate(props) {
   const navigate = useNavigate();
   return <VisitorOut {...props} navigate={navigate} />;

@@ -6,7 +6,8 @@ import Chip from '@mui/material/Chip';
 import { useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-
+import { FaTimesCircle } from 'react-icons/fa';
+ 
 class SignUp extends Component {
   constructor(props) {
     super(props);
@@ -17,10 +18,11 @@ class SignUp extends Component {
       cardNo: '',
       buildingToVisit: '',
       showModal: false,
+      showErrorModal: false,
       systemTime: '',
     };
   }
-
+ 
   getCurrentTime = () => {
     const now = new Date();
     const hours = now.getHours() % 12 || 12;
@@ -29,44 +31,44 @@ class SignUp extends Component {
     const formattedTime = `${hours}:${minutes} ${ampm}`;
     return formattedTime;
   };
-
+ 
   componentDidMount() {
     const currentTime = this.getCurrentTime();
     this.setState({ systemTime: currentTime });
   }
-
-  checkCardUsage = async (cardNo) => {
-    try {
-      const response = await axios.get(`https://citsecure-backend.onrender.com/admin/checkcard/${cardNo}`);
-      return response.data.isUsed;
-    } catch (error) {
-      console.error('Failed to check card usage:', error.message);
-      return false; // Assuming the card is not used in case of an error
-    }
-  };
-
+ 
+  // checkCardUsage = async (cardNo) => {
+  //   try {
+  //     const response = await axios.get(`http://localhost:8080/admin/checkcard/${cardNo}`);
+  //     return response.data.isUsed;
+  //   } catch (error) {
+  //     console.error('Failed to check card usage:', error.message);
+  //     return false; // Assuming the card is not used in case of an error
+  //   }
+  // };
+ 
   handleSignUp = async (e) => {
     e.preventDefault();
     const { firstName, lastName, purpose, cardNo, buildingToVisit, systemTime } = this.state;
-    
+   
     try {
       if (!firstName || !lastName || !purpose || !cardNo || !buildingToVisit) {
         alert('Please fill out all fields');
         return;
       }
-
+ 
       if (cardNo < 1 || cardNo > 100) {
         alert('Invalid card number!');
         return;
       }
-
-      const isCardUsed = await this.checkCardUsage(cardNo);
-      if (isCardUsed) {
-        console.log('Card already used, Check your card again');
-        alert('Card already used, Check your card again');
-        return;
-      }
-
+ 
+      // const isCardUsed = await this.checkCardUsage(cardNo);
+      // if (isCardUsed) {
+      //   console.log('Card already used, Check your card again');
+      //   this.setState({ showErrorModal: true });
+      //   return;
+      // }
+ 
       const formData = {
         firstName,
         lastName,
@@ -76,21 +78,21 @@ class SignUp extends Component {
         timeIn: systemTime,
         buildingToVisit,
       };
-
-      const response = await axios.post('https://citsecure-backend.onrender.com/admin/addvisitor', formData, {
+ 
+      const response = await axios.post('http://localhost:8080/admin/addvisitor', formData, {
         headers: {
           'Content-Type': 'application/json',
         },
       });
-
+ 
       console.log('Signup successful:', response.data);
       this.setState({ showModal: true });
     } catch (error) {
       console.error('Signup failed:', error.message);
-      alert('Card already used, Check your card again');
+      this.setState({ showErrorModal: true });
     }
   };
-
+ 
   resetFormInputs = () => {
     this.setState({
       firstName: '',
@@ -100,23 +102,27 @@ class SignUp extends Component {
       buildingToVisit: '',
     });
   };
-
+ 
   handleViewMap = () => {
     window.location.href = '/visitor-navigation';
   };
-
+ 
   handleClose = () => {
     this.setState({ showModal: false });
     this.resetFormInputs();
   };
-
+ 
+  handleErrorClose = () => {
+    this.setState({ showErrorModal: false });
+  };
+ 
   handleGoBack = () => {
     this.props.navigate('/'); // Navigate to the home page ("/")
   };
-
+ 
   render() {
-    const { firstName, lastName, purpose, cardNo, buildingToVisit, showModal, systemTime } = this.state;
-
+    const { firstName, lastName, purpose, cardNo, buildingToVisit, showModal, showErrorModal, systemTime } = this.state;
+ 
     const backgroundImageStyle = {
       backgroundImage: 'url("images/TIME IN.png")',
       backgroundRepeat: 'no-repeat',
@@ -124,7 +130,7 @@ class SignUp extends Component {
       height: 'auto',
       overflowY: 'auto',
     };
-
+ 
     const formStyle = {
       border: '3px solid maroon',
       borderRadius: '8px',
@@ -133,7 +139,7 @@ class SignUp extends Component {
       fontFamily: 'Roboto, sans-serif',
       position: 'relative', // Add this for positioning the button
     };
-
+ 
     const inputStyle = {
       borderColor: 'maroon',
       borderRadius: '8px',
@@ -142,7 +148,7 @@ class SignUp extends Component {
       fontFamily: 'Roboto, sans-serif',
       width: '100%',
     };
-
+ 
     return (
       <section className="background-radial-gradient overflow-hidden" style={backgroundImageStyle}>
         <div className="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
@@ -150,10 +156,10 @@ class SignUp extends Component {
             <div className="col-lg-6 mb-5 mb-lg-0" style={{ zIndex: 10 }}>
             </div>
             <div className="col-lg-6 mb-5 mb-lg-0 position-relative">
-              
+             
               <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 <Chip
-                  label="You can ccess Campus Map after Log In"
+                  label="Access Campus Map after Time In"
                   style={{
                     textAlign: 'center',
                     borderRadius: '100px',
@@ -162,7 +168,7 @@ class SignUp extends Component {
                   }}
                 />
               </div>
-
+ 
               <div className="card bg-glass" style={formStyle}>
                 <Button
                   variant="contained"
@@ -216,7 +222,7 @@ class SignUp extends Component {
                         </div>
                       </div>
                     </div>
-
+ 
                     <div className="form-outline mb-4">
                       <label className="form-label" htmlFor="purpose">
                         Purpose
@@ -231,7 +237,7 @@ class SignUp extends Component {
                         required
                       />
                     </div>
-
+ 
                     <div className="form-outline mb-4">
                       <label className="form-label" htmlFor="cardNo">
                         Card Number
@@ -246,7 +252,7 @@ class SignUp extends Component {
                         required
                       />
                     </div>
-
+ 
                     <div className="form-outline mb-4">
                       <label className="form-label" htmlFor="timeIn">
                         Time In
@@ -261,7 +267,7 @@ class SignUp extends Component {
                         required
                       />
                     </div>
-
+ 
                     <div className="form-group">
                       <label htmlFor="buildingToVisit">Building to Visit</label>
                       <select
@@ -284,7 +290,7 @@ class SignUp extends Component {
                         <option value="WILDCATS LIBRARY">WILDCATS LIBRARY</option>
                       </select>
                     </div>
-
+ 
                     <button
                       type="submit"
                       className="btn btn-primary btn-block mb-4"
@@ -300,7 +306,7 @@ class SignUp extends Component {
             </div>
           </div>
         </div>
-
+ 
         <Modal show={showModal} onHide={this.handleClose} centered>
           <Modal.Header closeButton style={{ borderBottom: '2px solid maroon' }}>
             <Modal.Title>Notification</Modal.Title>
@@ -320,12 +326,32 @@ class SignUp extends Component {
             </BootstrapButton>
           </Modal.Footer>
         </Modal>
+ 
+        <Modal show={showErrorModal} onHide={this.handleErrorClose} centered>
+          <Modal.Header closeButton style={{ borderBottom: '2px solid maroon' }}>
+            <Modal.Title>Notification</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <div className="d-flex justify-content-center align-items-center">
+              <p style={{ marginRight: '10px', marginBottom: '0', display: 'flex', alignItems: 'center' }}>
+                Card already used, Check your card again
+              </p>
+              <FaTimesCircle style={{ color: 'red', fontSize: '2rem' }} />
+            </div>
+          </Modal.Body>
+          <Modal.Footer style={{ borderTop: '2px solid maroon', display: 'flex', justifyContent: 'center' }}>
+            <BootstrapButton variant="primary" onClick={this.handleErrorClose} style={{ background: 'maroon', width: '150px' }}>
+              OK
+            </BootstrapButton>
+          </Modal.Footer>
+        </Modal>
       </section>
     );
   }
 }
-
+ 
 export default function SignUpWithNavigate(props) {
   const navigate = useNavigate();
   return <SignUp {...props} navigate={navigate} />;
 }
+ 
