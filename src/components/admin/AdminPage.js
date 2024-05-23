@@ -182,13 +182,6 @@ class AdminPage extends Component {
             Logout
           </Button>
         </header>
-        {/* <div style={{ display: 'flex', justifyContent: 'flex-end', marginRight: '20px' }}>
-          <input
-            type="date"
-            value={filterDateTimeIn}
-            onChange={(e) => this.setState({ filterDateTimeIn: e.target.value })}
-          />
-        </div> */}
         <Container fluid className="py-5">
           <Row>
             <Col lg={12}>
@@ -233,39 +226,6 @@ class AdminPage extends Component {
             </Col>
           </Row>
         </Container>
-        <Modal show={showUpdateModal} onHide={this.handleUpdateModalClose}>
-          <Modal.Header closeButton>
-            <Modal.Title>Update User</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <Form.Group controlId="formFirstName">
-              <Form.Label>First Name</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter first name"
-                value={updatedUserData.firstName}
-                onChange={(e) => this.setState({ updatedUserData: { ...updatedUserData, firstName: e.target.value } })}
-              />
-            </Form.Group>
-            <Form.Group controlId="formLastName">
-              <Form.Label>Last Name</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter last name"
-                value={updatedUserData.lastName}
-                onChange={(e) => this.setState({ updatedUserData: { ...updatedUserData, lastName: e.target.value } })}
-              />
-            </Form.Group>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary" onClick={this.handleUpdateModalClose}>
-              Close
-            </Button>
-            <Button variant="primary" onClick={this.handleUpdateModalSave}>
-              Save Changes
-            </Button>
-          </Modal.Footer>
-        </Modal>
       </>
     );
   }

@@ -37,16 +37,6 @@ class SignUp extends Component {
     this.setState({ systemTime: currentTime });
   }
  
-  // checkCardUsage = async (cardNo) => {
-  //   try {
-  //     const response = await axios.get(`http://localhost:8080/admin/checkcard/${cardNo}`);
-  //     return response.data.isUsed;
-  //   } catch (error) {
-  //     console.error('Failed to check card usage:', error.message);
-  //     return false; // Assuming the card is not used in case of an error
-  //   }
-  // };
- 
   handleSignUp = async (e) => {
     e.preventDefault();
     const { firstName, lastName, purpose, cardNo, buildingToVisit, systemTime } = this.state;
@@ -61,13 +51,6 @@ class SignUp extends Component {
         alert('Invalid card number!');
         return;
       }
- 
-      // const isCardUsed = await this.checkCardUsage(cardNo);
-      // if (isCardUsed) {
-      //   console.log('Card already used, Check your card again');
-      //   this.setState({ showErrorModal: true });
-      //   return;
-      // }
  
       const formData = {
         firstName,
@@ -159,7 +142,7 @@ class SignUp extends Component {
              
               <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 <Chip
-                  label="Access Campus Map after Time In"
+                  label="You can access the Campus Map after Time In"
                   style={{
                     textAlign: 'center',
                     borderRadius: '100px',
