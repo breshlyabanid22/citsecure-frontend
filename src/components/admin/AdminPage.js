@@ -95,48 +95,48 @@ class AdminPage extends Component {
     this.props.navigate('/AdminLogin');
   };
 
-  handleUpdate = (userId) => {
-    const userToUpdate = this.state.users.find((user) => user.id === userId);
-    if (userToUpdate) {
-      this.setState({
-        selectedUserId: userId,
-        showUpdateModal: true,
-        updatedUserData: {
-          firstName: userToUpdate.firstName,
-          lastName: userToUpdate.lastName,
-        },
-      });
-    }
-  };
+  // handleUpdate = (userId) => {
+  //   const userToUpdate = this.state.users.find((user) => user.id === userId);
+  //   if (userToUpdate) {
+  //     this.setState({
+  //       selectedUserId: userId,
+  //       showUpdateModal: true,
+  //       updatedUserData: {
+  //         firstName: userToUpdate.firstName,
+  //         lastName: userToUpdate.lastName,
+  //       },
+  //     });
+  //   }
+  // };
 
-  handleUpdateModalSave = async () => {
-    const { selectedUserId, updatedUserData } = this.state;
-    try {
-      const response = await axios.put(`https://citsecure-backend.onrender.com/admin/updateVisitor/${selectedUserId}`, {
-        firstName: updatedUserData.firstName,
-        lastName: updatedUserData.lastName,
-      });
+  // handleUpdateModalSave = async () => {
+  //   const { selectedUserId, updatedUserData } = this.state;
+  //   try {
+  //     const response = await axios.put(`https://citsecure-backend.onrender.com/admin/updateVisitor/${selectedUserId}`, {
+  //       firstName: updatedUserData.firstName,
+  //       lastName: updatedUserData.lastName,
+  //     });
   
-      if (response.status === 200) {
-        alert('User updated successfully!');
-        this.fetchUsers();
-      } else {
-        alert('Failed to update user.');
-      }
+  //     if (response.status === 200) {
+  //       alert('User updated successfully!');
+  //       this.fetchUsers();
+  //     } else {
+  //       alert('Failed to update user.');
+  //     }
   
-      this.handleUpdateModalClose();
-    } catch (error) {
-      console.error('Error updating user:', error.message);
-    }
-  };
+  //     this.handleUpdateModalClose();
+  //   } catch (error) {
+  //     console.error('Error updating user:', error.message);
+  //   }
+  // };
 
-  handleUpdateModalClose = () => {
-    this.setState({
-      showUpdateModal: false,
-      selectedUserId: null,
-      updatedUserData: { firstName: '', lastName: '' },
-    });
-  };
+  // handleUpdateModalClose = () => {
+  //   this.setState({
+  //     showUpdateModal: false,
+  //     selectedUserId: null,
+  //     updatedUserData: { firstName: '', lastName: '' },
+  //   });
+  // };
 
 
   render() {
@@ -222,13 +222,7 @@ class AdminPage extends Component {
                           <span style={{ color: 'red' }}>Card in use</span>
                         ) : (
                           <>
-                            <Button
-                              variant="info"
-                              style={{ marginRight: '5px', fontWeight: 'bold', color: 'black' }}
-                              onClick={() => this.handleUpdate(user.id)}
-                            >
-                              Edit
-                            </Button>
+                          <span style={{ color: 'blue' }}>Returned</span>
                           </>
                         )}
                       </td>
