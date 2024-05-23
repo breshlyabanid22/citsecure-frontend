@@ -20,9 +20,9 @@ class AdminPage extends Component {
 
     this.handleExportPDF = this.handleExportPDF.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
-    this.handleUpdate = this.handleUpdate.bind(this);
-    this.handleUpdateModalClose = this.handleUpdateModalClose.bind(this);
-    this.handleUpdateModalSave = this.handleUpdateModalSave.bind(this);
+    // this.handleUpdate = this.handleUpdate.bind(this);
+    // this.handleUpdateModalClose = this.handleUpdateModalClose.bind(this);
+    // this.handleUpdateModalSave = this.handleUpdateModalSave.bind(this);
   }
 
   componentDidMount() {
