@@ -109,26 +109,7 @@ class AdminPage extends Component {
     }
   };
 
-  handleUpdateModalSave = async () => {
-    const { selectedUserId, updatedUserData } = this.state;
-    try {
-      const response = await axios.put(`https://citsecure-backend.onrender.com/admin/updateVisitor/${selectedUserId}`, {
-        firstName: updatedUserData.firstName,
-        lastName: updatedUserData.lastName,
-      });
-  
-      if (response.status === 200) {
-        alert('User updated successfully!');
-        this.fetchUsers();
-      } else {
-        alert('Failed to update user.');
-      }
-  
-      this.handleUpdateModalClose();
-    } catch (error) {
-      console.error('Error updating user:', error.message);
-    }
-  };
+
 
   handleUpdateModalClose = () => {
     this.setState({
@@ -222,13 +203,7 @@ class AdminPage extends Component {
                           <span style={{ color: 'red' }}>Card in use</span>
                         ) : (
                           <>
-                            <Button
-                              variant="info"
-                              style={{ marginRight: '5px', fontWeight: 'bold', color: 'black' }}
-                              onClick={() => this.handleUpdate(user.id)}
-                            >
-                              Edit
-                            </Button>
+                          <span style={{ color: 'blue' }}>Returned</span>
                           </>
                         )}
                       </td>
@@ -239,39 +214,6 @@ class AdminPage extends Component {
             </Col>
           </Row>
         </Container>
-        <Modal show={showUpdateModal} onHide={this.handleUpdateModalClose}>
-          <Modal.Header closeButton>
-            <Modal.Title>Update User</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <Form.Group controlId="formFirstName">
-              <Form.Label>First Name</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter first name"
-                value={updatedUserData.firstName}
-                onChange={(e) => this.setState({ updatedUserData: { ...updatedUserData, firstName: e.target.value } })}
-              />
-            </Form.Group>
-            <Form.Group controlId="formLastName">
-              <Form.Label>Last Name</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter last name"
-                value={updatedUserData.lastName}
-                onChange={(e) => this.setState({ updatedUserData: { ...updatedUserData, lastName: e.target.value } })}
-              />
-            </Form.Group>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary" onClick={this.handleUpdateModalClose}>
-              Close
-            </Button>
-            <Button variant="primary" onClick={this.handleUpdateModalSave}>
-              Save Changes
-            </Button>
-          </Modal.Footer>
-        </Modal>
       </>
     );
   }
