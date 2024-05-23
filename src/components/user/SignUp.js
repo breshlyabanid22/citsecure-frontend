@@ -256,6 +256,7 @@ class SignUp extends Component {
                       <select
                         id="buildingToVisit"
                         className="form-control"
+                        style={{ color: 'maroon' }}
                         value={buildingToVisit}
                         onChange={(e) => this.setState({ buildingToVisit: e.target.value })}
                         required

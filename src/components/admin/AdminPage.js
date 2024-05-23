@@ -20,9 +20,6 @@ class AdminPage extends Component {
 
     this.handleExportPDF = this.handleExportPDF.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
-    // this.handleUpdate = this.handleUpdate.bind(this);
-    // this.handleUpdateModalClose = this.handleUpdateModalClose.bind(this);
-    // this.handleUpdateModalSave = this.handleUpdateModalSave.bind(this);
   }
 
   componentDidMount() {
@@ -95,49 +92,6 @@ class AdminPage extends Component {
     this.props.navigate('/AdminLogin');
   };
 
-  // handleUpdate = (userId) => {
-  //   const userToUpdate = this.state.users.find((user) => user.id === userId);
-  //   if (userToUpdate) {
-  //     this.setState({
-  //       selectedUserId: userId,
-  //       showUpdateModal: true,
-  //       updatedUserData: {
-  //         firstName: userToUpdate.firstName,
-  //         lastName: userToUpdate.lastName,
-  //       },
-  //     });
-  //   }
-  // };
-
-  // handleUpdateModalSave = async () => {
-  //   const { selectedUserId, updatedUserData } = this.state;
-  //   try {
-  //     const response = await axios.put(`https://citsecure-backend.onrender.com/admin/updateVisitor/${selectedUserId}`, {
-  //       firstName: updatedUserData.firstName,
-  //       lastName: updatedUserData.lastName,
-  //     });
-  
-  //     if (response.status === 200) {
-  //       alert('User updated successfully!');
-  //       this.fetchUsers();
-  //     } else {
-  //       alert('Failed to update user.');
-  //     }
-  
-  //     this.handleUpdateModalClose();
-  //   } catch (error) {
-  //     console.error('Error updating user:', error.message);
-  //   }
-  // };
-
-  // handleUpdateModalClose = () => {
-  //   this.setState({
-  //     showUpdateModal: false,
-  //     selectedUserId: null,
-  //     updatedUserData: { firstName: '', lastName: '' },
-  //   });
-  // };
-
 
   render() {
     const { users, showUpdateModal, updatedUserData, filterDateTimeIn } = this.state;
@@ -170,9 +124,9 @@ class AdminPage extends Component {
           </div>
           <ul className="nav nav-pills d-flex justify-content-center" style={{ margin: 0, padding: 0, flexGrow: 1 }}>
             <li className="nav-item">
-              <Link to="/visitor-navigation" className="nav-link" style={{ color: 'white' }}>
+              <span className="nav-link" style={{ color: 'white' }}>
                 Admin Dashboard
-              </Link>
+              </span>
             </li>
           </ul>
           <Button onClick={this.handleExportPDF} style={{ color: 'white', backgroundColor: 'transparent', border: '1px solid white', marginLeft: '10px' }}>
