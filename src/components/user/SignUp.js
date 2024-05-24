@@ -133,8 +133,21 @@ class SignUp extends Component {
       backgroundColor: 'white',
       fontFamily: 'Roboto, sans-serif',
       width: '100%',
-      WebkitAppearance: 'none',
     };
+
+    const style = document.createElement('style');
+      style.innerHTML = `
+        input[type="number"]::-webkit-outer-spin-button,
+        input[type="number"]::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+        input[type="number"] {
+          -moz-appearance: textfield;
+        }
+      `;
+      // Append the style element to the head
+      document.head.appendChild(style);
  
     return (
       <section className="background-radial-gradient overflow-hidden" style={backgroundImageStyle}>
