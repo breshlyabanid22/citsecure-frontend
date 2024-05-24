@@ -11,6 +11,9 @@ import VisitorNavigationPage from './Visitor Class/VisitorNavigationPage';  // C
 import About from './About'; 
 import AdminLogin from './LoginControl Class/AdminLogin';  // Corrected Path
 import History from './admin/History';
+import AcadBuilding from './Visitor Class/AcadBuilding';
+import HighSchool from './Visitor Class/HighSchool';
+import Elementary from './Visitor Class/Elementary'
 
 const AppRouter = () => {
   // Assume you have a function to get the user role, you can replace this with your actual logic
@@ -28,7 +31,9 @@ const AppRouter = () => {
         <Route path="/About" element={<About />} />
         <Route path="/AdminLogin" element={<AdminLogin />} />
         <Route path="/apphistory" element={<History />} />
-
+        <Route path="/acad-building" element={<AcadBuilding />} />
+        <Route path="/high-school" element={<HighSchool />} /> {/* Add route for HighSchool */}
+        <Route path="/elementary" element={<Elementary />} /> {/* Add route for Elementary */}
         {/* Add more routes for other components as needed */}
 
         

@@ -109,12 +109,11 @@ class VisitorNavigationPage extends React.Component {
                                     <p>The Academic Building is a hub for various academic and administrative functions, including Architecture, Tourism, Industrial Engineering, Hospital Management, Alumni Office, Safety and Security, and Property Custodian Office. It offers design studios, specialized classrooms, labs, and a secure environment for students. The building serves as a hub for learning, innovation, and community building, fostering a dynamic learning environment.</p>
                                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                                         {/* Get Directions Button (centered) */}
-                                        <button
-                                            style={directionButtonStyles}
-                                            onClick={() => this.handleGetDirections('main-canteen-direction', 0)}
-                                        >
-                                            View Location
-                                        </button>
+                                        <Link to="/acad-building" style={{ textDecoration: 'none' }}>
+                                <button style={directionButtonStyles}>
+                                    View Location
+                                </button>
+                            </Link>
                                     </div>
                                 </div>
                             </Carousel.Caption>
@@ -135,12 +134,11 @@ class VisitorNavigationPage extends React.Component {
                             <p>Explore the hallways of our high school, a dynamic environment geared for academic advancement and exciting student life. The high school facility creates a suitable atmosphere for study and personal growth by providing well-equipped classrooms, contemporary amenities, and collaboration spaces.</p>
                             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                           {/* Get Directions Button (centered) */}
-                          <button
-                              style={directionButtonStyles}
-                              onClick={() => this.handleGetDirections('main-canteen-direction', 0)}
-                          >
-                              View Location
-                          </button>
+                          <Link to="/high-school" style={{ textDecoration: 'none' }}>
+                                <button style={directionButtonStyles}>
+                                    View Location
+                                </button>
+                            </Link>
                         </div>
                           </div>
                         </Carousel.Caption>
@@ -161,12 +159,11 @@ class VisitorNavigationPage extends React.Component {
                             <p>Step inside the heart of our elementary building, a dynamic and loving environment designed for early childhood education.</p>
                             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                           {/* Get Directions Button (centered) */}
-                          <button
-                            style={directionButtonStyles}
-                            onClick={() => this.handleGetDirections('main-canteen-direction', 0)}
-                          >
-                            View Location
-                          </button>
+                          <Link to="/elementary" style={{ textDecoration: 'none' }}>
+                                <button style={directionButtonStyles}>
+                                    View Location
+                                </button>
+                            </Link>
                         </div>
                           </div>
                         </Carousel.Caption>
