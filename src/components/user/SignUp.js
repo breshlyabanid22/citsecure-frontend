@@ -248,7 +248,12 @@ class SignUp extends Component {
                         className="form-control custom-input "
                         style={inputStyle}
                         value={cardNo}
-                        onChange={(e) => this.setState({ cardNo: e.target.value })}
+                        onChange={(e) => {
+                          const inputValue = e.target.value;
+                          if (inputValue === '' || (inputValue >= 1 && inputValue <= 100)) {
+                            this.setState({ cardNo: inputValue });
+                          }
+                        }}
                         required
                       />
                     </div>

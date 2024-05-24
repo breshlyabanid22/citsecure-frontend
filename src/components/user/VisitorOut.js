@@ -51,7 +51,7 @@ class VisitorOut extends Component {
     this.setState({ showErrorModal: false });
   };
  
-  handleLogin = async (e) => {
+  handleTimeOut = async (e) => {
     e.preventDefault();
     const { cardNo, hours, minutes, ampm } = this.state;
  
@@ -145,7 +145,7 @@ class VisitorOut extends Component {
                 Go Back
               </Button>
               <div className="card-body px-4 py-5 px-md-5">
-                <form onSubmit={this.handleLogin}>
+                <form onSubmit={this.handleTimeOut}>
                   <div className="form-outline mb-4">
                     <label className="form-label" htmlFor="cardNo">
                       Card Number
