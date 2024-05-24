@@ -133,6 +133,7 @@ class SignUp extends Component {
       backgroundColor: 'white',
       fontFamily: 'Roboto, sans-serif',
       width: '100%',
+      WebkitAppearance: 'none',
     };
  
     return (
@@ -229,9 +230,9 @@ class SignUp extends Component {
                         Card Number
                       </label>
                       <input
-                        type="text"
+                        type="number"
                         id="cardNo"
-                        className="form-control custom-input"
+                        className="form-control custom-input "
                         style={inputStyle}
                         value={cardNo}
                         onChange={(e) => this.setState({ cardNo: e.target.value })}
