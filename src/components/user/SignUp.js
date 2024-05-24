@@ -107,7 +107,7 @@ class SignUp extends Component {
   };
  
   render() {
-    const { firstName, lastName, purpose, cardNo, buildingToVisit, showModal, showErrorModal, systemTime } = this.state;
+    const { firstName, lastName, purpose, cardNo, buildingToVisit, showModal, showErrorModal, systemTime, modalContent} = this.state;
  
     const backgroundImageStyle = {
       backgroundImage: 'url("images/TIME IN.png")',
