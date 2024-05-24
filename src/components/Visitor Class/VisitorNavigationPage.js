@@ -113,7 +113,7 @@ class VisitorNavigationPage extends React.Component {
                                             style={directionButtonStyles}
                                             onClick={() => this.handleGetDirections('main-canteen-direction', 0)}
                                         >
-                                            Get Directions
+                                            View Location
                                         </button>
                                     </div>
                                 </div>
@@ -139,7 +139,7 @@ class VisitorNavigationPage extends React.Component {
                               style={directionButtonStyles}
                               onClick={() => this.handleGetDirections('main-canteen-direction', 0)}
                           >
-                              Get Directions
+                              View Location
                           </button>
                         </div>
                           </div>
@@ -165,7 +165,7 @@ class VisitorNavigationPage extends React.Component {
                             style={directionButtonStyles}
                             onClick={() => this.handleGetDirections('main-canteen-direction', 0)}
                           >
-                            Get Directions
+                            View Location
                           </button>
                         </div>
                           </div>
@@ -190,7 +190,7 @@ class VisitorNavigationPage extends React.Component {
                             style={directionButtonStyles}
                             onClick={() => this.handleGetDirections('main-canteen-direction', 0)}
                           >
-                            Get Directions
+                            View Location
                           </button>
                         </div>
                           </div>
@@ -216,7 +216,7 @@ class VisitorNavigationPage extends React.Component {
                             style={directionButtonStyles}
                             onClick={() => this.handleGetDirections('main-canteen-direction', 0)}
                           >
-                            Get Directions
+                            View Location
                           </button>
                         </div>
                       </div>
@@ -242,7 +242,7 @@ class VisitorNavigationPage extends React.Component {
                            style={directionButtonStyles}
                            onClick={() => this.handleGetDirections('main-canteen-direction', 0)}
                           >
-                            Get Directions
+                            View Location
                           </button>
                         </div>
                               </div>
@@ -267,7 +267,7 @@ class VisitorNavigationPage extends React.Component {
                             style={directionButtonStyles}
                             onClick={() => this.handleGetDirections('main-canteen-direction', 0)}
                           >
-                            Get Directions
+                            View Location
                           </button>
                         </div>
                               </div>
@@ -292,7 +292,7 @@ class VisitorNavigationPage extends React.Component {
                             style={directionButtonStyles}
                             onClick={() => this.handleGetDirections('main-canteen-direction', 0)}
                           >
-                            Get Directions
+                            View Location
                           </button>
                         </div>
                       </div>
@@ -318,7 +318,7 @@ class VisitorNavigationPage extends React.Component {
                             style={directionButtonStyles}
                             onClick={() => this.handleGetDirections('main-canteen-direction', 0)}
                           >
-                            Get Directions
+                            View Location
                           </button>
                         </div>
                               </div>
@@ -343,7 +343,7 @@ class VisitorNavigationPage extends React.Component {
                             style={directionButtonStyles}
                             onClick={() => this.handleGetDirections('main-canteen-direction', 0)}
                           >
-                            Get Directions
+                            View Location
                           </button>
                         </div>
                       </div>

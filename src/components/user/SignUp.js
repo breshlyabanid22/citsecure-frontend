@@ -20,6 +20,7 @@ class SignUp extends Component {
       showModal: false,
       showErrorModal: false,
       systemTime: '',
+      modalContent: '',
     };
   }
  
@@ -48,7 +49,8 @@ class SignUp extends Component {
       }
  
       if (cardNo < 1 || cardNo > 100) {
-        alert('Invalid card number!');
+        this.setState({modalContent: "Invalid card number. Please try again."});
+        this.setState({showErrorModal: true});
         return;
       }
  
@@ -72,6 +74,7 @@ class SignUp extends Component {
       this.setState({ showModal: true });
     } catch (error) {
       console.error('Signup failed:', error.message);
+      this.setState({modalContent: "Card is in used. Check your card again."})
       this.setState({ showErrorModal: true });
     }
   };
@@ -318,7 +321,7 @@ class SignUp extends Component {
           <Modal.Body>
             <div className="d-flex justify-content-center align-items-center">
               <p style={{ marginRight: '10px', marginBottom: '0', display: 'flex', alignItems: 'center' }}>
-                Card already used, Check your card again
+                {modalContent}
               </p>
               <FaTimesCircle style={{ color: 'red', fontSize: '2rem' }} />
             </div>
