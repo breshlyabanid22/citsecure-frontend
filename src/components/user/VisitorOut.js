@@ -242,7 +242,7 @@ class VisitorOut extends Component {
             <div className="d-flex justify-content-center align-items-center">
               <div className="d-flex align-items-center">
                 <p style={{ marginRight: '10px', marginBottom: '0' }}>
-                  Card is not available
+                  Invalid card number. Please try again.
                 </p>
                 <FaTimesCircle style={{ color: 'red', fontSize: '2rem', marginBottom: '0' }} />
               </div>
