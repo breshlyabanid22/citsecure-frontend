@@ -249,7 +249,7 @@ class SignUp extends Component {
                         style={inputStyle}
                         value={cardNo}
                         onChange={(e) => {
-                          const inputValue = e.target.value;
+                          const inputValue = e.target.value
                           if (inputValue === '' || (inputValue >= 1 && inputValue <= 100)) {
                             this.setState({ cardNo: inputValue });
                           }
